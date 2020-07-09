@@ -267,7 +267,6 @@ static CGFloat const DefaultIconScale = 1.0;
 
 - (void)didUntrackView:(nullable UIView *)view {
   [_native recyclePrimaryView];
-  _native = nil;
 }
 
 - (void)inmobiMediatedUnifiedNativeAdFailed {
