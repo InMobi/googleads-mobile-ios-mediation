@@ -189,7 +189,8 @@ static CGSize GADMAdapterInMobiSupportedAdSizeFromGADAdSize(GADAdSize gadAdSize)
   NSLog(@"InMobi banner reward action completed with rewards: %@", rewards.description);
 }
 
--(void)bannerAdImpressed:(IMBanner *)banner {
+-(void)bannerAdImpressed:(nonnull IMBanner *)banner {
+  NSLog(@"<<<< bannerAdImpressed >>>>");
   [_bannerAdEventDelegate reportImpression];
 }
 

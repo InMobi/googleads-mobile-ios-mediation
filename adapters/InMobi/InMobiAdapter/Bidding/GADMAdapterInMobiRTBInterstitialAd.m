@@ -188,7 +188,8 @@ didInteractWithParams:(nonnull NSDictionary *)params {
     NSLog(@"InMobi AdServer returned a response.");
 }
 
--(void)interstitialAdImpressed:(IMInterstitial *)interstitial {
+-(void)interstitialAdImpressed:(nonnull IMInterstitial *)interstitial {
+    NSLog(@"<<<< interstitialAdImpressed >>>>");
     [_interstitalAdEventDelegate reportImpression];
 }
 
