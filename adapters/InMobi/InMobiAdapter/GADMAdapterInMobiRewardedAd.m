@@ -210,4 +210,9 @@
   [_adEventDelegate didEndVideo];
 }
 
+-(void)interstitialAdImpressed:(nonnull IMInterstitial *)interstitial {
+    NSLog(@"<<<< interstitialAdImpressed >>>>");
+    [_adEventDelegate reportImpression];
+}
+
 @end

@@ -280,6 +280,10 @@ static CGSize GADMAdapterInMobiSupportedAdSizeFromGADAdSize(GADAdSize gadAdSize)
   NSLog(@"InMobi banner reward action completed with rewards: %@", rewards.description);
 }
 
+-(void)bannerAdImpressed:(nonnull IMBanner *)banner {
+    NSLog(@"<<<< bannerAdImpressed >>>>");
+}
+
 #pragma mark IMAdInterstitialDelegate methods
 
 - (void)interstitialDidFinishLoading:(nonnull IMInterstitial *)interstitial {
@@ -329,6 +333,10 @@ static CGSize GADMAdapterInMobiSupportedAdSizeFromGADAdSize(GADAdSize gadAdSize)
 
 - (void)interstitialDidReceiveAd:(nonnull IMInterstitial *)interstitial {
   NSLog(@"InMobi AdServer returned a response.");
+}
+
+-(void)interstitialAdImpressed:(nonnull IMInterstitial *)interstitial {
+    NSLog(@"<<<< interstitialAdImpressed >>>>");
 }
 
 @end
