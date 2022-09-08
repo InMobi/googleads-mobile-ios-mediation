@@ -147,7 +147,6 @@ static CGSize GADMAdapterInMobiSupportedAdSizeFromGADAdSize(GADAdSize gadAdSize)
 - (void)bannerDidFinishLoading:(nonnull IMBanner *)banner {
     NSLog(@"<<<<<ad request completed>>>>>");
     _bannerAdEventDelegate = _bannerRenderCompletionHandler(self,nil);
-    [_bannerAdEventDelegate willPresentFullScreenView];
 }
 
 - (void)banner:(nonnull IMBanner *)banner didFailToLoadWithError:(nonnull IMRequestStatus *)error {

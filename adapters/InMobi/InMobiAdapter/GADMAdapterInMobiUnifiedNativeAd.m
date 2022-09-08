@@ -2,7 +2,7 @@
 //  GADMAdapterInMobiUnifiedNativeAd.m
 //  InMobiAdapter
 //
-//  Created by Bavirisetti.Dinesh on 02/09/22.
+//  Created by Niranjan Agrawal on 1/22/16.
 //
 //
 
