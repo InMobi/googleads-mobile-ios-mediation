@@ -89,8 +89,7 @@ static CGSize GADMAdapterInMobiSupportedAdSizeFromGADAdSize(GADAdSize gadAdSize)
 }
 
 - (void)requestBannerWithSize:(GADAdSize)adSize {
-    long long placementId =
-    [_bannerAdConfig.credentials.settings[GADMAdapterInMobiPlacementID] longLongValue];
+    long long placementId = [_placementIdentifier longLongValue];
     
     if (placementId == 0) {
         NSError *error = GADMAdapterInMobiErrorWithCodeAndDescription(
@@ -135,10 +134,6 @@ static CGSize GADMAdapterInMobiSupportedAdSizeFromGADAdSize(GADAdSize gadAdSize)
     
     _adView.delegate = self;
     [_adView load];
-}
-
-- (void)stopBeingDelegate {
-    _adView.delegate = nil;
 }
 
 #pragma mark -

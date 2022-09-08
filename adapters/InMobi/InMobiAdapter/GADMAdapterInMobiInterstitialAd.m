@@ -77,8 +77,7 @@
 }
 
 - (void)requestInterstitialAd {
-    long long placementId =
-    [_interstitialAdConfig.credentials.settings[GADMAdapterInMobiPlacementID] longLongValue];
+    long long placementId = [_placementIdentifier longLongValue];
     if (placementId == 0) {
         NSError *error = GADMAdapterInMobiErrorWithCodeAndDescription(
                                                                       GADMAdapterInMobiErrorInvalidServerParameters,
@@ -112,15 +111,10 @@
     if ([_interstitialAd isReady]) {
         [_interstitialAd showFromViewController:viewController
                                   withAnimation:kIMInterstitialAnimationTypeCoverVertical];
+    } else {
+        IMRequestStatus *error = [[IMRequestStatus alloc] initWithDomain:@"com.inmobi.ads.requeststatus" code:kIMStatusCodeInternalError userInfo:@{NSLocalizedDescriptionKey: @"Interstitial ad not ready to be presented"}];
+        [_interstitalAdEventDelegate didFailToPresentWithError:error];
     }
-}
-
-- (void)stopBeingDelegate {
-    _interstitialAd.delegate = nil;
-}
-
-- (BOOL)isBannerAnimationOK:(GADMBannerAnimationType)animType {
-    return [_interstitialAd isReady];
 }
 
 #pragma mark IMAdInterstitialDelegate methods
@@ -146,7 +140,7 @@ didFailToLoadWithError:(IMRequestStatus *)error {
 
 - (void)interstitial:(nonnull IMInterstitial *)interstitial
 didFailToPresentWithError:(IMRequestStatus *)error {
-    _interstitialRenderCompletionHandler(nil,error);
+    [_interstitalAdEventDelegate didFailToPresentWithError:error];
 }
 
 - (void)interstitialWillDismiss:(nonnull IMInterstitial *)interstitial {

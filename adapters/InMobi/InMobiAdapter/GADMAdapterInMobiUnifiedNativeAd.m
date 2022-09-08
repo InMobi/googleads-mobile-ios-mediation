@@ -140,8 +140,7 @@ __attribute__((constructor)) static void initialize_imageCache() {
 }
 
 - (void)requestNativeAd {
-    long long placementId =
-    [_nativeAdConfig.credentials.settings[GADMAdapterInMobiPlacementID] longLongValue];
+    long long placementId = [_placementIdentifier longLongValue];
     
     if (placementId == 0) {
         NSError *error = GADMAdapterInMobiErrorWithCodeAndDescription(
@@ -195,7 +194,7 @@ __attribute__((constructor)) static void initialize_imageCache() {
 
 - (void)nativeWillPresentScreen:(nonnull IMNative *)native {
     NSLog(@"[InMobi] Native Will Present screen.");
-    [GADMediatedUnifiedNativeAdNotificationSource mediatedNativeAdWillPresentScreen:self];
+    [_nativeAdEventDelegate willPresentFullScreenView];
 }
 
 - (void)nativeDidPresentScreen:(nonnull IMNative *)native {
@@ -204,12 +203,12 @@ __attribute__((constructor)) static void initialize_imageCache() {
 
 - (void)nativeWillDismissScreen:(nonnull IMNative *)native {
     NSLog(@"[InMobi] Native Will dismiss screen.");
-    [GADMediatedUnifiedNativeAdNotificationSource mediatedNativeAdWillDismissScreen:self];
+    [_nativeAdEventDelegate willDismissFullScreenView];
 }
 
 - (void)nativeDidDismissScreen:(nonnull IMNative *)native {
     NSLog(@"[InMobi] Native Did dismiss screen.");
-    [GADMediatedUnifiedNativeAdNotificationSource mediatedNativeAdDidDismissScreen:self];
+    [_nativeAdEventDelegate didDismissFullScreenView];
 }
 
 - (void)userWillLeaveApplicationFromNative:(nonnull IMNative *)native {
@@ -219,7 +218,7 @@ __attribute__((constructor)) static void initialize_imageCache() {
 
 - (void)nativeAdImpressed:(nonnull IMNative *)native {
     NSLog(@"[InMobi] InMobi recorded impression successfully.");
-    [GADMediatedUnifiedNativeAdNotificationSource mediatedNativeAdDidRecordImpression:self];
+    [_nativeAdEventDelegate reportImpression];
 }
 
 - (void)native:(nonnull IMNative *)native didInteractWithParams:(nonnull NSDictionary *)params {

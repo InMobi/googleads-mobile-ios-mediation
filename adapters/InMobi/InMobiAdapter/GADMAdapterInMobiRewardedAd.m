@@ -98,8 +98,7 @@
 
 - (void)requestRewardedAd {
   // Converting a string to a long long value.
-  long long placement =
-      [_adConfig.credentials.settings[GADMAdapterInMobiPlacementID] longLongValue];
+  long long placement = [_placementIdentifier longLongValue];
 
   // Converting a long long value to a NSNumber so that it can be used as a key to store in a
   // dictionary.
@@ -143,9 +142,12 @@
 }
 
 - (void)presentFromViewController:(nonnull UIViewController *)viewController {
-  if ([_rewardedAd isReady]) {
-    [_rewardedAd showFromViewController:viewController];
-  }
+    if ([_rewardedAd isReady]) {
+        [_rewardedAd showFromViewController:viewController];
+    }  else {
+        IMRequestStatus *error = [[IMRequestStatus alloc] initWithDomain:@"com.inmobi.ads.requeststatus" code:kIMStatusCodeInternalError userInfo:@{NSLocalizedDescriptionKey: @"Rewarded ad not ready to be presented"}];
+        [_adEventDelegate didFailToPresentWithError:error];
+    }
 }
 
 #pragma mark IMInterstitialDelegate methods
