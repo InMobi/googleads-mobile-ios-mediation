@@ -23,7 +23,7 @@
     
     GADMediationInterstitialLoadCompletionHandler _interstitialRenderCompletionHandler;
     
-    /// InMobi rewarded ad.
+    /// InMobi interstitial ad.
     IMInterstitial *_interstitialAd;
     
     /// InMobi Placement identifier.
