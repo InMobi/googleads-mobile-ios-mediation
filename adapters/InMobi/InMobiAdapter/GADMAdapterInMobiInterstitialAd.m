@@ -112,7 +112,9 @@
         [_interstitialAd showFromViewController:viewController
                                   withAnimation:kIMInterstitialAnimationTypeCoverVertical];
     } else {
-        IMRequestStatus *error = [[IMRequestStatus alloc] initWithDomain:@"com.inmobi.ads.requeststatus" code:kIMStatusCodeInternalError userInfo:@{NSLocalizedDescriptionKey: @"Interstitial ad not ready to be presented"}];
+        NSError *error = GADMAdapterInMobiErrorWithCodeAndDescription(
+            GADMAdapterInMobiErrorAdNotReady,
+            @"[InMobi] Error - Interstitial ad not ready to be present.");
         [_interstitalAdEventDelegate didFailToPresentWithError:error];
     }
 }

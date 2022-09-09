@@ -145,7 +145,9 @@
     if ([_rewardedAd isReady]) {
         [_rewardedAd showFromViewController:viewController];
     }  else {
-        IMRequestStatus *error = [[IMRequestStatus alloc] initWithDomain:@"com.inmobi.ads.requeststatus" code:kIMStatusCodeInternalError userInfo:@{NSLocalizedDescriptionKey: @"Rewarded ad not ready to be presented"}];
+        NSError *error = GADMAdapterInMobiErrorWithCodeAndDescription(
+            GADMAdapterInMobiErrorAdNotReady,
+            @"[InMobi] Error - Rewarded ad not ready to be present.");
         [_adEventDelegate didFailToPresentWithError:error];
     }
 }
