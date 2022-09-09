@@ -38,7 +38,7 @@ static NSString *const _Nonnull GADMAdapterVungleNullPubRequestID = @"null";
   /// Indicates whether the Vungle SDK is initializing.
   BOOL _isInitializing;
 
-  /// Vungle's prioritized placementID
+  /// Vungle's prioritized placementID.
   NSString *_prioritizedPlacementID;
 }
 
@@ -71,7 +71,7 @@ static NSString *const _Nonnull GADMAdapterVungleNullPubRequestID = @"null";
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     NSString *version = [GADMAdapterVungleVersion stringByReplacingOccurrencesOfString:@"."
-                                                                             withString:@"_"];
+                                                                            withString:@"_"];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
     [VungleSDK.sharedSDK performSelector:@selector(setPluginName:version:)
@@ -258,7 +258,9 @@ static NSString *const _Nonnull GADMAdapterVungleNullPubRequestID = @"null";
     }
   } else {
     @synchronized(_delegates) {
-      GADMAdapterVungleMapTableRemoveObjectForKey(_delegates, delegate.desiredPlacement);
+      if (delegate && (delegate == [_delegates objectForKey:delegate.desiredPlacement])) {
+        GADMAdapterVungleMapTableRemoveObjectForKey(_delegates, delegate.desiredPlacement);
+      }
     }
   }
 }
@@ -361,10 +363,6 @@ static NSString *const _Nonnull GADMAdapterVungleNullPubRequestID = @"null";
       GADMAdapterVungleMutableDictionarySetObjectForKey(options, VunglePlayAdOptionKeyUser,
                                                         extras.userId);
     }
-    if (extras.ordinal) {
-      GADMAdapterVungleMutableDictionarySetObjectForKey(options, VunglePlayAdOptionKeyOrdinal,
-                                                        @(extras.ordinal));
-    }
     if (extras.flexViewAutoDismissSeconds) {
       GADMAdapterVungleMutableDictionarySetObjectForKey(
           options, VunglePlayAdOptionKeyFlexViewAutoDismissSeconds,
@@ -419,6 +417,12 @@ static NSString *const _Nonnull GADMAdapterVungleNullPubRequestID = @"null";
   return [VungleSDK.sharedSDK currentSuperToken];
 }
 
+- (void)setCOPPAStatus:(NSNumber *)coppa {
+  if (coppa) {
+    [[VungleSDK sharedSDK] updateCOPPAStatus:[coppa boolValue]];
+  }
+}
+
 #pragma mark - VungleSDKDelegate methods
 
 - (void)vungleWillShowAdForPlacementID:(nullable NSString *)placementID {
@@ -433,7 +437,14 @@ static NSString *const _Nonnull GADMAdapterVungleNullPubRequestID = @"null";
 }
 
 - (void)vungleDidShowAdForPlacementID:(nullable NSString *)placementID {
-  NSLog(@"Vungle: Did show Ad for placement ID:%@", placementID);
+  if (!placementID.length) {
+    return;
+  }
+
+  id<GADMAdapterVungleDelegate> delegate =
+      [self getDelegateForPlacement:placementID
+          withBannerRouterDelegateState:BannerRouterDelegateStatePlaying];
+  [delegate didShowAd];
 }
 
 - (void)vungleAdViewedForPlacement:(NSString *)placementID {

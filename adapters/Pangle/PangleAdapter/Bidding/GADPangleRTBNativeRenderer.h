@@ -1,10 +1,10 @@
-// Copyright 2016 Google Inc.
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//     https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,15 +15,12 @@
 #import <Foundation/Foundation.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
-typedef NS_ENUM(NSUInteger, CBFramework);
+@interface GADPangleRTBNativeRenderer : NSObject <GADMediationNativeAd>
 
-/// Keys for the Chartboost extra assets.
-@interface GADMChartboostExtras : NSObject<GADAdNetworkExtras>
-
-/// Chartboost custom framework.
-@property(nonatomic, assign) CBFramework framework;
-
-/// Chartboost custom framework version.
-@property(nonatomic, copy) NSString *frameworkVersion;
+/// Asks the receiver to render the ad configuration.
+- (void)renderNativeAdForAdConfiguration:
+            (nonnull GADMediationNativeAdConfiguration *)adConfiguration
+                       completionHandler:
+                           (nonnull GADMediationNativeLoadCompletionHandler)completionHandler;
 
 @end

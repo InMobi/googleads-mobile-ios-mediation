@@ -206,12 +206,8 @@
 
 - (void)interstitial:(nonnull IMInterstitial *)interstitial
     rewardActionCompletedWithRewards:(nonnull NSDictionary *)rewards {
-  NSString *key = rewards.allKeys.firstObject;
-  if (key) {
-    GADAdReward *reward = [[GADAdReward alloc] initWithRewardType:key rewardAmount:rewards[key]];
-    [_adEventDelegate didRewardUserWithReward:reward];
-  }
   [_adEventDelegate didEndVideo];
+  [_adEventDelegate didRewardUser];
 }
 
 -(void)interstitialAdImpressed:(nonnull IMInterstitial *)interstitial {

@@ -56,6 +56,7 @@
 
 - (void)getBannerWithSize:(GADAdSize)adSize {
   id<GADMAdNetworkConnector> strongConnector = _connector;
+  [[GADMAdapterVungleRouter sharedInstance] setCOPPAStatus:strongConnector.childDirectedTreatment];
   _bannerAd = [[GADMAdapterVungleBanner alloc] initWithGADMAdNetworkConnector:strongConnector
                                                                       adapter:self];
   [_bannerAd getBannerWithSize:adSize];
@@ -65,6 +66,7 @@
 
 - (void)getInterstitial {
   id<GADMAdNetworkConnector> strongConnector = _connector;
+  [[GADMAdapterVungleRouter sharedInstance] setCOPPAStatus:strongConnector.childDirectedTreatment];
   self.desiredPlacement = [GADMAdapterVungleUtils findPlacement:[strongConnector credentials]
                                                   networkExtras:[strongConnector networkExtras]];
   if (!self.desiredPlacement.length) {
@@ -146,8 +148,8 @@
 @synthesize isAdLoaded;
 
 - (nullable NSString *)bidResponse {
-    // This is the waterfall interstitial section. It won't have a bid response
-    return nil;
+  // This is the waterfall interstitial section. It won't have a bid response.
+  return nil;
 }
 
 - (void)initialized:(BOOL)isSuccess error:(nullable NSError *)error {
@@ -163,7 +165,7 @@
     // Already invoked an ad load callback.
     return;
   }
-    self.isAdLoaded = YES;
+  self.isAdLoaded = YES;
 
   [_connector adapterDidReceiveInterstitial:self];
 }
@@ -179,6 +181,10 @@
 
 - (void)willShowAd {
   [_connector adapterWillPresentInterstitial:self];
+}
+
+- (void)didShowAd {
+  // Do nothing.
 }
 
 - (void)didViewAd {

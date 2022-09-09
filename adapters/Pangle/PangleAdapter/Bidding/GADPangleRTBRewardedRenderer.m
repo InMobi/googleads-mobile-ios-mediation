@@ -61,6 +61,7 @@
     _loadCompletionHandler(nil, error);
     return;
   }
+
   BURewardedVideoModel *model = [[BURewardedVideoModel alloc] init];
   _rewardedVideoAd = [[BURewardedVideoAd alloc] initWithSlotID:placementId
                                             rewardedVideoModel:model];
@@ -110,14 +111,8 @@
 - (void)rewardedVideoAdServerRewardDidSucceed:(BURewardedVideoAd *)rewardedVideoAd
                                        verify:(BOOL)verify {
   if (verify) {
-    NSNumber *amount =
-        [NSDecimalNumber numberWithInteger:rewardedVideoAd.rewardedVideoModel.rewardAmount];
-    GADAdReward *reward = [[GADAdReward alloc]
-        initWithRewardType:@""
-              rewardAmount:[NSDecimalNumber decimalNumberWithDecimal:[amount decimalValue]]];
-
     id<GADMediationRewardedAdEventDelegate> delegate = _delegate;
-    [delegate didRewardUserWithReward:reward];
+    [delegate didRewardUser];
   }
 }
 

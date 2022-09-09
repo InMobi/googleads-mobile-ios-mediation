@@ -1,4 +1,4 @@
-// Copyright 2016 Google Inc.
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,22 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "GADMChartboostExtras.h"
+#import <Foundation/Foundation.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
-#if __has_include(<Chartboost/Chartboost.h>)
-#import <Chartboost/Chartboost.h>
-#else
-#import "Chartboost.h"
-#endif
+typedef NS_ENUM(NSInteger, GADMintegralErrorCode) {
+    /// Missing server parameters.
+    GADMintegralErrorInvalidServerParameters = 101
+};
 
-@implementation GADMChartboostExtras
-
-- (nonnull instancetype)init {
-  self = [super init];
-  if (self) {
-    _framework = CBFrameworkOther;
-  }
-  return self;
-}
+@interface GADMediationAdapterMintegral : NSObject <GADRTBAdapter>
 
 @end
