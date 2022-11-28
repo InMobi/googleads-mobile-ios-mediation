@@ -102,7 +102,7 @@ __attribute__((constructor)) static void initialize_imageCache() {
         }
         
         if (error) {
-            NSLog(@"[InMobi] Initialization failed: %@", error.localizedDescription);
+            GADMAdapterInMobiLog(@"InMobi SDK failed to initialize with error: %@", error.localizedDescription);
             strongSelf->_nativeRenderCompletionHandler(nil, error);
             return;
         }
@@ -122,23 +122,7 @@ __attribute__((constructor)) static void initialize_imageCache() {
     
     NSString *accountID = _nativeAdConfig.credentials.settings[GADMAdapterInMobiAccountID];
     
-    GADMAdapterInMobiUnifiedNativeAd *__weak weakSelf = self;
-    [GADMAdapterInMobiInitializer.sharedInstance
-     initializeWithAccountID:accountID
-     completionHandler:^(NSError *_Nullable error) {
-        GADMAdapterInMobiUnifiedNativeAd *strongSelf = weakSelf;
-        if (!strongSelf) {
-            return;
-        }
-        
-        if (error) {
-            NSLog(@"[InMobi] Initialization failed: %@", error.localizedDescription);
-            strongSelf->_nativeRenderCompletionHandler(nil,error);
-            return;
-        }
-        
-        [strongSelf requestNativeAd];
-    }];
+    [self requestNativeAd];
 }
 
 - (void)requestNativeAd {
@@ -153,11 +137,11 @@ __attribute__((constructor)) static void initialize_imageCache() {
     }
     
     if ([_nativeAdConfig isTestRequest]) {
-        NSLog(@"[InMobi] Please enter your device ID in the InMobi console to recieve test ads from "
+        GADMAdapterInMobiLog(@"[InMobi] Please enter your device ID in the InMobi console to recieve test ads from "
               @"Inmobi");
     }
     
-    NSLog(@"[InMobi] Requesting native ad from InMobi.");
+    GADMAdapterInMobiLog(@"[InMobi] Requesting native ad from InMobi.");
     _native = [[IMNative alloc] initWithPlacementId:placementId delegate:self];
     
     GADInMobiExtras *extras = [_nativeAdConfig extras];
@@ -190,49 +174,48 @@ __attribute__((constructor)) static void initialize_imageCache() {
 }
 
 - (void)native:(nonnull IMNative *)native didFailToLoadWithError:(nonnull IMRequestStatus *)error {
-    NSLog(@"Native Ad failed to load");
+    GADMAdapterInMobiLog(@"Native Ad failed to load");
     _nativeRenderCompletionHandler(nil,error);
 }
 
 - (void)nativeWillPresentScreen:(nonnull IMNative *)native {
-    NSLog(@"[InMobi] Native Will Present screen.");
+    GADMAdapterInMobiLog(@"[InMobi] Native Will Present screen.");
     [_nativeAdEventDelegate willPresentFullScreenView];
 }
 
 - (void)nativeDidPresentScreen:(nonnull IMNative *)native {
-    NSLog(@"[InMobi] Native Did Present screen.");
+    GADMAdapterInMobiLog(@"[InMobi] Native Did Present screen.");
 }
 
 - (void)nativeWillDismissScreen:(nonnull IMNative *)native {
-    NSLog(@"[InMobi] Native Will dismiss screen.");
+    GADMAdapterInMobiLog(@"[InMobi] Native Will dismiss screen.");
     [_nativeAdEventDelegate willDismissFullScreenView];
 }
 
 - (void)nativeDidDismissScreen:(nonnull IMNative *)native {
-    NSLog(@"[InMobi] Native Did dismiss screen.");
+    GADMAdapterInMobiLog(@"[InMobi] Native Did dismiss screen.");
     [_nativeAdEventDelegate didDismissFullScreenView];
 }
 
 - (void)userWillLeaveApplicationFromNative:(nonnull IMNative *)native {
-    NSLog(@"[InMobi] User will leave application from native.");
-    [_nativeAdEventDelegate willBackgroundApplication];
+    GADMAdapterInMobiLog(@"[InMobi] User will leave application from native.");
 }
 
 - (void)nativeAdImpressed:(nonnull IMNative *)native {
-    NSLog(@"[InMobi] InMobi recorded impression successfully.");
+    GADMAdapterInMobiLog(@"[InMobi] InMobi recorded impression successfully.");
     [_nativeAdEventDelegate reportImpression];
 }
 
 - (void)native:(nonnull IMNative *)native didInteractWithParams:(nonnull NSDictionary *)params {
-    NSLog(@"[InMobi] User did interact with native.");
+    GADMAdapterInMobiLog(@"[InMobi] User did interact with native.");
 }
 
 - (void)nativeDidFinishPlayingMedia:(nonnull IMNative *)native {
-    NSLog(@"[InMobi] Native ad finished playing media.");
+    GADMAdapterInMobiLog(@"[InMobi] Native ad finished playing media.");
 }
 
 - (void)userDidSkipPlayingMediaFromNative:(nonnull IMNative *)native {
-    NSLog(@"[InMobi] User did skip playing media from native.");
+    GADMAdapterInMobiLog(@"[InMobi] User did skip playing media from native.");
 }
 
 #pragma mark - Setup Data
