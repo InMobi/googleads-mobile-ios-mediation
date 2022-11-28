@@ -116,7 +116,7 @@
   if ([delegateManager containsDelegateForPlacementIdentifier:_placementIdentifier]) {
     NSError *error = GADMAdapterInMobiErrorWithCodeAndDescription(
         GADMAdapterInMobiErrorAdAlreadyLoaded,
-        @"[InMobi] Error - cannot request multiple ads using same placement ID.");
+        @"Error - cannot request multiple ads using same placement ID.");
     _renderCompletionHandler(nil, error);
     return;
   }
@@ -124,7 +124,7 @@
   [delegateManager addDelegate:self forPlacementIdentifier:_placementIdentifier];
 
   if (_adConfig.isTestRequest) {
-    GADMAdapterInMobiLog(@"[InMobi] Please enter your device ID in the InMobi console to receive test ads from "
+    GADMAdapterInMobiLog(@"Please enter your device ID in the InMobi console to receive test ads from "
           @"Inmobi");
   }
 
@@ -215,7 +215,7 @@
 }
 
 -(void)interstitialAdImpressed:(nonnull IMInterstitial *)interstitial {
-    GADMAdapterInMobiLog(@"<<<< interstitialAdImpressed >>>>");
+    GADMAdapterInMobiLog(@"InMobi SDK interstitial Ad Impressed");
     [_adEventDelegate reportImpression];
 }
 

@@ -131,17 +131,17 @@ __attribute__((constructor)) static void initialize_imageCache() {
     if (placementId == 0) {
         NSError *error = GADMAdapterInMobiErrorWithCodeAndDescription(
                                                                       GADMAdapterInMobiErrorInvalidServerParameters,
-                                                                      @"[InMobi] Error - Placement ID not specified.");
+                                                                      @"Error - Placement ID not specified.");
         _nativeRenderCompletionHandler(nil,error);
         return;
     }
     
     if ([_nativeAdConfig isTestRequest]) {
-        GADMAdapterInMobiLog(@"[InMobi] Please enter your device ID in the InMobi console to recieve test ads from "
+        GADMAdapterInMobiLog(@"Please enter your device ID in the InMobi console to recieve test ads from "
               @"Inmobi");
     }
     
-    GADMAdapterInMobiLog(@"[InMobi] Requesting native ad from InMobi.");
+    GADMAdapterInMobiLog(@"Requesting native ad from InMobi.");
     _native = [[IMNative alloc] initWithPlacementId:placementId delegate:self];
     
     GADInMobiExtras *extras = [_nativeAdConfig extras];
@@ -179,43 +179,43 @@ __attribute__((constructor)) static void initialize_imageCache() {
 }
 
 - (void)nativeWillPresentScreen:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"[InMobi] Native Will Present screen.");
+    GADMAdapterInMobiLog(@"Native Will Present screen.");
     [_nativeAdEventDelegate willPresentFullScreenView];
 }
 
 - (void)nativeDidPresentScreen:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"[InMobi] Native Did Present screen.");
+    GADMAdapterInMobiLog(@"Native Did Present screen.");
 }
 
 - (void)nativeWillDismissScreen:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"[InMobi] Native Will dismiss screen.");
+    GADMAdapterInMobiLog(@"Native Will dismiss screen.");
     [_nativeAdEventDelegate willDismissFullScreenView];
 }
 
 - (void)nativeDidDismissScreen:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"[InMobi] Native Did dismiss screen.");
+    GADMAdapterInMobiLog(@"Native Did dismiss screen.");
     [_nativeAdEventDelegate didDismissFullScreenView];
 }
 
 - (void)userWillLeaveApplicationFromNative:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"[InMobi] User will leave application from native.");
+    GADMAdapterInMobiLog(@"User will leave application from native.");
 }
 
 - (void)nativeAdImpressed:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"[InMobi] InMobi recorded impression successfully.");
+    GADMAdapterInMobiLog(@"InMobi recorded impression successfully.");
     [_nativeAdEventDelegate reportImpression];
 }
 
 - (void)native:(nonnull IMNative *)native didInteractWithParams:(nonnull NSDictionary *)params {
-    GADMAdapterInMobiLog(@"[InMobi] User did interact with native.");
+    GADMAdapterInMobiLog(@"User did interact with native.");
 }
 
 - (void)nativeDidFinishPlayingMedia:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"[InMobi] Native ad finished playing media.");
+    GADMAdapterInMobiLog(@"Native ad finished playing media.");
 }
 
 - (void)userDidSkipPlayingMediaFromNative:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"[InMobi] User did skip playing media from native.");
+    GADMAdapterInMobiLog(@"User did skip playing media from native.");
 }
 
 #pragma mark - Setup Data
