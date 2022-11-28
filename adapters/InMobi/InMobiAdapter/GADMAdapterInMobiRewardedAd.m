@@ -1,4 +1,4 @@
-// Copyright 2022 Google LLC
+// Copyright 2019 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 
 #import "GADMAdapterInMobiRewardedAd.h"
 #import <InMobiSDK/InMobiSDK.h>
@@ -88,7 +87,7 @@
               }
 
               if (error) {
-                NSLog(@"[InMobi] Initialization failed: %@", error.localizedDescription);
+                GADMAdapterInMobiLog(@"[InMobi] Initialization failed: %@", error.localizedDescription);
                 strongSelf->_renderCompletionHandler(nil, error);
                 return;
               }
@@ -125,7 +124,7 @@
   [delegateManager addDelegate:self forPlacementIdentifier:_placementIdentifier];
 
   if (_adConfig.isTestRequest) {
-    NSLog(@"[InMobi] Please enter your device ID in the InMobi console to receive test ads from "
+    GADMAdapterInMobiLog(@"[InMobi] Please enter your device ID in the InMobi console to receive test ads from "
           @"Inmobi");
   }
 
@@ -148,7 +147,7 @@
     }  else {
         NSError *error = GADMAdapterInMobiErrorWithCodeAndDescription(
             GADMAdapterInMobiErrorAdNotReady,
-            @"[InMobi] Error - Rewarded ad not ready to be present.");
+            @"InMobi SDK failed to present a rewarded ad.");
         [_adEventDelegate didFailToPresentWithError:error];
     }
 }
@@ -216,7 +215,7 @@
 }
 
 -(void)interstitialAdImpressed:(nonnull IMInterstitial *)interstitial {
-    NSLog(@"<<<< interstitialAdImpressed >>>>");
+    GADMAdapterInMobiLog(@"<<<< interstitialAdImpressed >>>>");
     [_adEventDelegate reportImpression];
 }
 
