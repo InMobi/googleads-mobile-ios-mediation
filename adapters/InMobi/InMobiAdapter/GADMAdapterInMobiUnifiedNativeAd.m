@@ -174,48 +174,48 @@ __attribute__((constructor)) static void initialize_imageCache() {
 }
 
 - (void)native:(nonnull IMNative *)native didFailToLoadWithError:(nonnull IMRequestStatus *)error {
-    GADMAdapterInMobiLog(@"Native Ad failed to load");
+    GADMAdapterInMobiLog(@"InMobi SDK failed to load native ad");
     _nativeRenderCompletionHandler(nil,error);
 }
 
 - (void)nativeWillPresentScreen:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"Native Will Present screen.");
+    GADMAdapterInMobiLog(@"InMobi SDK will present a screen from a native ad.");
     [_nativeAdEventDelegate willPresentFullScreenView];
 }
 
 - (void)nativeDidPresentScreen:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"Native Did Present screen.");
+    GADMAdapterInMobiLog(@"InMobi SDK did present a screen from a native ad.");
 }
 
 - (void)nativeWillDismissScreen:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"Native Will dismiss screen.");
+    GADMAdapterInMobiLog(@"InMobi SDK will dismiss a screen from a native ad.");
     [_nativeAdEventDelegate willDismissFullScreenView];
 }
 
 - (void)nativeDidDismissScreen:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"Native Did dismiss screen.");
+    GADMAdapterInMobiLog(@"InMobi SDK did dismiss a screen from a native ad.");
     [_nativeAdEventDelegate didDismissFullScreenView];
 }
 
 - (void)userWillLeaveApplicationFromNative:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"User will leave application from native.");
+    GADMAdapterInMobiLog(@"InMobi SDK will cause the user to leave the application from a native ad.");
 }
 
 - (void)nativeAdImpressed:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"InMobi recorded impression successfully.");
+    GADMAdapterInMobiLog(@"InMobi SDK recorded an impression from a native ad.");
     [_nativeAdEventDelegate reportImpression];
 }
 
 - (void)native:(nonnull IMNative *)native didInteractWithParams:(nonnull NSDictionary *)params {
-    GADMAdapterInMobiLog(@"User did interact with native.");
+    GADMAdapterInMobiLog(@"InMobi SDK recorded a click on a native ad.");
 }
 
 - (void)nativeDidFinishPlayingMedia:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"Native ad finished playing media.");
+    GADMAdapterInMobiLog(@"InMobi SDK finished playing media on native ad.");
 }
 
 - (void)userDidSkipPlayingMediaFromNative:(nonnull IMNative *)native {
-    GADMAdapterInMobiLog(@"User did skip playing media from native.");
+    GADMAdapterInMobiLog(@"InMobi SDK User did skip playing media from native ad.");
 }
 
 #pragma mark - Setup Data

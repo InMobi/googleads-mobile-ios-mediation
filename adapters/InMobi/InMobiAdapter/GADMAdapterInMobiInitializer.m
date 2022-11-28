@@ -73,7 +73,7 @@
         if (error) {
           strongSelf->_initializationState = GADMAdapterInMobiInitStateUninitialized;
         } else {
-          GADMAdapterInMobiLog(@"[InMobi] Initialized successfully.");
+          GADMAdapterInMobiLog(@"InMobi SDK Initialized successfully.");
             
           strongSelf->_initializationState = GADMAdapterInMobiInitStateInitialized;
         }

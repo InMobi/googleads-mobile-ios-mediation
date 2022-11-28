@@ -146,6 +146,7 @@ static CGSize GADMAdapterInMobiSupportedAdSizeFromGADAdSize(GADAdSize gadAdSize)
 }
 
 - (void)banner:(nonnull IMBanner *)banner didFailToLoadWithError:(nonnull IMRequestStatus *)error {
+    GADMAdapterInMobiLog(@"InMobi SDK fail to load banner ad.");
     _bannerAdLoadCompletionHandler(nil, error);
 }
 

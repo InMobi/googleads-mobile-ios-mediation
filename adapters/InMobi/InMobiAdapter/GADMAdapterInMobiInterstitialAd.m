@@ -129,6 +129,7 @@
 
 - (void)interstitial:(nonnull IMInterstitial *)interstitial
 didFailToLoadWithError:(IMRequestStatus *)error {
+    GADMAdapterInMobiLog(@"InMobi SDK fail to load interstitial ad.");
     _interstitialRenderCompletionHandler(nil, error);
 }
 
@@ -143,6 +144,7 @@ didFailToLoadWithError:(IMRequestStatus *)error {
 
 - (void)interstitial:(nonnull IMInterstitial *)interstitial
 didFailToPresentWithError:(IMRequestStatus *)error {
+    GADMAdapterInMobiLog(@"InMobi SDK did fail to present interstitial ad.");
     _interstitialRenderCompletionHandler(nil,error);
 }
 
@@ -158,7 +160,7 @@ didFailToPresentWithError:(IMRequestStatus *)error {
 
 - (void)interstitial:(nonnull IMInterstitial *)interstitial
 didInteractWithParams:(nonnull NSDictionary *)params {
-    GADMAdapterInMobiLog(@"interstitialDidInteract");
+    GADMAdapterInMobiLog(@"InMobi SDK recorded a click on a interstitial ad.");
     [_interstitalAdEventDelegate reportClick];
 }
 
