@@ -87,7 +87,7 @@
               }
 
               if (error) {
-                GADMAdapterInMobiLog(@"[InMobi] Initialization failed: %@", error.localizedDescription);
+                GADMAdapterInMobiLog(@"InMobi SDK Initialization failed: %@", error.localizedDescription);
                 strongSelf->_renderCompletionHandler(nil, error);
                 return;
               }
@@ -215,7 +215,7 @@
 }
 
 -(void)interstitialAdImpressed:(nonnull IMInterstitial *)interstitial {
-    GADMAdapterInMobiLog(@"InMobi SDK interstitial Ad Impressed");
+    GADMAdapterInMobiLog(@"InMobi SDK recorded an impression from a interstitial ad.");
     [_adEventDelegate reportImpression];
 }
 
