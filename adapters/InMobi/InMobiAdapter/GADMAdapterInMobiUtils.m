@@ -93,7 +93,7 @@ NSError *_Nullable GADMAdapterInMobiValidatePlacementIdentifier(
 
   return GADMAdapterInMobiErrorWithCodeAndDescription(
       GADMAdapterInMobiErrorInvalidServerParameters,
-      @"[InMobi] Error - Placement ID not specified.");
+      @"Error - Placement ID not specified.");
 }
 
 void GADMAdapterInMobiSetTargetingFromExtras(GADInMobiExtras *_Nullable extras) {
