@@ -64,10 +64,10 @@
 
   NSString *accountID = [accountIDs anyObject];
   if (accountIDs.count > 1) {
-    GADMAdapterInMobiLog(@"Found the following account IDs: %@. "
+    NSLog(@"Found the following account IDs: %@. "
           @"Please remove any account IDs you are not using from the AdMob UI.",
           accountIDs);
-    GADMAdapterInMobiLog(@"Initializing InMobi SDK with the account ID: %@", accountID);
+    NSLog(@"Initializing InMobi SDK with the account ID: %@", accountID);
   }
 
   [GADMAdapterInMobiInitializer.sharedInstance initializeWithAccountID:accountID

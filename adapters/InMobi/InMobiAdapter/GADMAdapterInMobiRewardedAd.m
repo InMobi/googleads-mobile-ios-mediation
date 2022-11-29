@@ -155,11 +155,13 @@
 #pragma mark IMInterstitialDelegate methods
 
 - (void)interstitialDidFinishLoading:(nonnull IMInterstitial *)interstitial {
+    GADMAdapterInMobiLog(@"InMobi SDK loaded a rewarded ad successfully.");
   _adEventDelegate = _renderCompletionHandler(self, nil);
 }
 
 - (void)interstitial:(nonnull IMInterstitial *)interstitial
     didFailToLoadWithError:(nonnull IMRequestStatus *)error {
+  GADMAdapterInMobiLog(@"InMobi SDK fail to load rewarded ad.");
   GADMAdapterInMobiDelegateManager *delegateManager =
       GADMAdapterInMobiDelegateManager.sharedInstance;
   [delegateManager removeDelegateForPlacementIdentifier:_placementIdentifier];
@@ -167,16 +169,18 @@
 }
 
 - (void)interstitialWillPresent:(nonnull IMInterstitial *)interstitial {
-  [_adEventDelegate willPresentFullScreenView];
+    GADMAdapterInMobiLog(@"InMobi SDK will present a full screen modal view from a rewarded ad.");
+    [_adEventDelegate willPresentFullScreenView];
 }
 
 - (void)interstitialDidPresent:(nonnull IMInterstitial *)interstitial {
-  [_adEventDelegate reportImpression];
+    GADMAdapterInMobiLog(@"InMobi SDK did present a full screen modal view from a rewarded ad.");
   [_adEventDelegate didStartVideo];
 }
 
 - (void)interstitial:(nonnull IMInterstitial *)interstitial
     didFailToPresentWithError:(nonnull IMRequestStatus *)error {
+  GADMAdapterInMobiLog(@"InMobi SDK did fail to present rewarded ad.");
   GADMAdapterInMobiDelegateManager *delegateManager =
       GADMAdapterInMobiDelegateManager.sharedInstance;
   [delegateManager removeDelegateForPlacementIdentifier:_placementIdentifier];
@@ -184,10 +188,12 @@
 }
 
 - (void)interstitialWillDismiss:(nonnull IMInterstitial *)interstitial {
+  GADMAdapterInMobiLog(@"InMobi SDK will dismiss a full screen modal view from a reward ad.");
   [_adEventDelegate willDismissFullScreenView];
 }
 
 - (void)interstitialDidDismiss:(nonnull IMInterstitial *)interstitial {
+  GADMAdapterInMobiLog(@"InMobi SDK did dismiss a full screen modal view from a reward ad.");
   GADMAdapterInMobiDelegateManager *delegateManager =
       GADMAdapterInMobiDelegateManager.sharedInstance;
   [delegateManager removeDelegateForPlacementIdentifier:_placementIdentifier];
@@ -196,12 +202,14 @@
 
 - (void)interstitial:(nonnull IMInterstitial *)interstitial
     didInteractWithParams:(nonnull NSDictionary *)params {
+  GADMAdapterInMobiLog(@"InMobi SDK recorded a click on a reward ad.");
   [_adEventDelegate reportClick];
 }
 
 - (void)interstitialDidReceiveAd:(nonnull IMInterstitial *)interstitial {
   // No equivalent callback in the Google Mobile Ads SDK.
   // This event indicates that InMobi fetched an ad from the server, but hasn't loaded it yet.
+    GADMAdapterInMobiLog(@"InMobi AdServer returned a response.");
 }
 
 - (void)interstitial:(nonnull IMInterstitial *)interstitial
@@ -215,7 +223,7 @@
 }
 
 -(void)interstitialAdImpressed:(nonnull IMInterstitial *)interstitial {
-    GADMAdapterInMobiLog(@"InMobi SDK recorded an impression from a interstitial ad.");
+    GADMAdapterInMobiLog(@"InMobi SDK recorded an impression from a reward ad.");
     [_adEventDelegate reportImpression];
 }
 

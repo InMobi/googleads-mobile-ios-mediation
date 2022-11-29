@@ -65,4 +65,4 @@ NSDictionary<NSString *, id> *_Nonnull GADMAdapterInMobiCreateRequestParametersF
     GADMediationAdConfiguration *_Nonnull adConfig);
 
 /// Logs with GADMediationAdapterInMobi Prefix.
-void GADMAdapterInMobiLog(NSString *_Nonnull format, ...)
+void GADMAdapterInMobiLog(NSString *_Nonnull format, ...);

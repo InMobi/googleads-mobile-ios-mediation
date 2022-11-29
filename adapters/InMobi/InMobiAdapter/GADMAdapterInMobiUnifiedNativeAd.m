@@ -208,6 +208,7 @@ __attribute__((constructor)) static void initialize_imageCache() {
 
 - (void)native:(nonnull IMNative *)native didInteractWithParams:(nonnull NSDictionary *)params {
     GADMAdapterInMobiLog(@"InMobi SDK recorded a click on a native ad.");
+    [_nativeAdEventDelegate reportClick];
 }
 
 - (void)nativeDidFinishPlayingMedia:(nonnull IMNative *)native {
