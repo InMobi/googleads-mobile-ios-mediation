@@ -145,7 +145,7 @@ didFailToLoadWithError:(IMRequestStatus *)error {
 - (void)interstitial:(nonnull IMInterstitial *)interstitial
 didFailToPresentWithError:(IMRequestStatus *)error {
     GADMAdapterInMobiLog(@"InMobi SDK did fail to present interstitial ad.");
-    _interstitialRenderCompletionHandler(nil,error);
+    [_interstitalAdEventDelegate didFailToPresentWithError:error];
 }
 
 - (void)interstitialWillDismiss:(nonnull IMInterstitial *)interstitial {
