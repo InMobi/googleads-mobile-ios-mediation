@@ -160,6 +160,7 @@ __attribute__((constructor)) static void initialize_imageCache() {
 #pragma mark - IMNativeDelegate
 
 - (void)nativeDidFinishLoading:(nonnull IMNative *)native {
+    GADMAdapterInMobiLog(@"InMobi SDK loaded a native ad successfully.");
     NSData *data = [_native.customAdContent dataUsingEncoding:NSUTF8StringEncoding];
     __weak GADMAdapterInMobiUnifiedNativeAd *weakSelf = self;
     [self setupWithData:data
