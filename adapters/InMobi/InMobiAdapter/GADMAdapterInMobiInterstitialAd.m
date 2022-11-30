@@ -129,32 +129,32 @@
 
 - (void)interstitial:(nonnull IMInterstitial *)interstitial
 didFailToLoadWithError:(IMRequestStatus *)error {
-    GADMAdapterInMobiLog(@"InMobi SDK fail to load interstitial ad.");
+    GADMAdapterInMobiLog(@"InMobi SDK failed to load interstitial ad.");
     _interstitialRenderCompletionHandler(nil, error);
 }
 
 - (void)interstitialWillPresent:(nonnull IMInterstitial *)interstitial {
-    GADMAdapterInMobiLog(@"InMobi SDK will present a full screen modal view from a interstitial ad.");
+    GADMAdapterInMobiLog(@"InMobi SDK will present a full screen interstitial ad.");
     [_interstitalAdEventDelegate willPresentFullScreenView];
 }
 
 - (void)interstitialDidPresent:(nonnull IMInterstitial *)interstitial {
-    GADMAdapterInMobiLog(@"InMobi SDK did present a full screen modal view from a interstitial ad.");
+    GADMAdapterInMobiLog(@"InMobi SDK did present a full screen interstitial ad.");
 }
 
 - (void)interstitial:(nonnull IMInterstitial *)interstitial
 didFailToPresentWithError:(IMRequestStatus *)error {
-    GADMAdapterInMobiLog(@"InMobi SDK did fail to present interstitial ad.");
+    GADMAdapterInMobiLog(@"InMobi SDK did failed to present interstitial ad.");
     [_interstitalAdEventDelegate didFailToPresentWithError:error];
 }
 
 - (void)interstitialWillDismiss:(nonnull IMInterstitial *)interstitial {
-    GADMAdapterInMobiLog(@"InMobi SDK will dismiss a full screen modal view from a interstitial ad.");
+    GADMAdapterInMobiLog(@"InMobi SDK will dismiss a interstitial ad.");
     [_interstitalAdEventDelegate willDismissFullScreenView];
 }
 
 - (void)interstitialDidDismiss:(nonnull IMInterstitial *)interstitial {
-    GADMAdapterInMobiLog(@"InMobi SDK did dismiss a full screen modal view from a interstitial ad.");
+    GADMAdapterInMobiLog(@"InMobi SDK did dismiss a interstitial ad.");
     [_interstitalAdEventDelegate didDismissFullScreenView];
 }
 
@@ -169,11 +169,11 @@ didInteractWithParams:(nonnull NSDictionary *)params {
 }
 
 - (void)interstitialDidReceiveAd:(nonnull IMInterstitial *)interstitial {
-    GADMAdapterInMobiLog(@"InMobi AdServer returned a response.");
+    GADMAdapterInMobiLog(@"InMobi AdServer returned a response for interstitial ad.");
 }
 
 -(void)interstitialAdImpressed:(nonnull IMInterstitial *)interstitial {
-    GADMAdapterInMobiLog(@"InMobi SDK recorded an impression from a interstitial ad.");
+    GADMAdapterInMobiLog(@"InMobi SDK recorded an impression from interstitial ad.");
     [_interstitalAdEventDelegate reportImpression];
 }
 
