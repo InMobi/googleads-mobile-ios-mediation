@@ -90,7 +90,7 @@ static CGSize GADMAdapterInMobiSupportedAdSizeFromGADAdSize(GADAdSize gadAdSize)
     if (placementId == 0) {
         NSError *error = GADMAdapterInMobiErrorWithCodeAndDescription(
                                                                       GADMAdapterInMobiErrorInvalidServerParameters,
-                                                                      @"Error - Placement ID not specified.");
+                                                                      @"GADMediationAdapterInMobi - Error : Placement ID not specified.");
         _bannerAdLoadCompletionHandler(nil, error);
         return;
     }
