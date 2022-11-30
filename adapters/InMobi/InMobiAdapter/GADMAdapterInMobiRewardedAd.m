@@ -116,7 +116,7 @@
   if ([delegateManager containsDelegateForPlacementIdentifier:_placementIdentifier]) {
     NSError *error = GADMAdapterInMobiErrorWithCodeAndDescription(
         GADMAdapterInMobiErrorAdAlreadyLoaded,
-        @"Error - cannot request multiple ads using same placement ID.");
+        @"GADMediationAdapterInMobi - Error : cannot request multiple ads using same placement ID.");
     _renderCompletionHandler(nil, error);
     return;
   }

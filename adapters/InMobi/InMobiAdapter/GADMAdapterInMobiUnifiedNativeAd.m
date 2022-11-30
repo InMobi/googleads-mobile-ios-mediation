@@ -131,7 +131,7 @@ __attribute__((constructor)) static void initialize_imageCache() {
     if (placementId == 0) {
         NSError *error = GADMAdapterInMobiErrorWithCodeAndDescription(
                                                                       GADMAdapterInMobiErrorInvalidServerParameters,
-                                                                      @"Error - Placement ID not specified.");
+                                                                      @"GADMediationAdapterInMobi -  Error : Placement ID not specified.");
         _nativeRenderCompletionHandler(nil,error);
         return;
     }
@@ -205,6 +205,7 @@ __attribute__((constructor)) static void initialize_imageCache() {
 - (void)nativeAdImpressed:(nonnull IMNative *)native {
     GADMAdapterInMobiLog(@"InMobi SDK recorded an impression from a native ad.");
     [_nativeAdEventDelegate reportImpression];
+    [_nativeAdEventDelegate didPlayVideo];
 }
 
 - (void)native:(nonnull IMNative *)native didInteractWithParams:(nonnull NSDictionary *)params {
@@ -214,10 +215,21 @@ __attribute__((constructor)) static void initialize_imageCache() {
 
 - (void)nativeDidFinishPlayingMedia:(nonnull IMNative *)native {
     GADMAdapterInMobiLog(@"InMobi SDK finished playing media on native ad.");
+    [_nativeAdEventDelegate didEndVideo];
 }
 
 - (void)userDidSkipPlayingMediaFromNative:(nonnull IMNative *)native {
     GADMAdapterInMobiLog(@"InMobi SDK User did skip playing media from native ad.");
+}
+
+-(void)native:(IMNative*)native adAudioStateChanged:(BOOL)audioStateMuted {
+    if (audioStateMuted) {
+        [_nativeAdEventDelegate didMuteVideo];
+        GADMAdapterInMobiLog(@"InMobi SDK audio state changed to mute for native ad.");
+    } else {
+        [_nativeAdEventDelegate didUnmuteVideo];
+        GADMAdapterInMobiLog(@"InMobi SDK audio state changed to unmute for native ad.");
+    }
 }
 
 #pragma mark - Setup Data
