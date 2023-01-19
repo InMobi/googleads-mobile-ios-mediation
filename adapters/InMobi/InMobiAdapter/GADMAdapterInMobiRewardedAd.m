@@ -160,7 +160,7 @@
   _adEventDelegate = _renderCompletionHandler(self, nil);
 }
 
-- (void)interstitial:(nonnull IMInterstitial *)interstitial didFailToLoadWithError:(IMRequestStatus *)error {
+- (void)interstitial:(nonnull IMInterstitial *)interstitial didFailToLoadWithError:(nonnull IMRequestStatus *)error {
   GADMAdapterInMobiLog(@"InMobi SDK failed to load rewarded ad.");
   GADMAdapterInMobiDelegateManager *delegateManager =
       GADMAdapterInMobiDelegateManager.sharedInstance;
@@ -178,7 +178,7 @@
   [_adEventDelegate didStartVideo];
 }
 
-- (void)interstitial:(nonnull IMInterstitial *)interstitial didFailToPresentWithError:(IMRequestStatus *)error {
+- (void)interstitial:(nonnull IMInterstitial *)interstitial didFailToPresentWithError:(nonnull IMRequestStatus *)error {
   GADMAdapterInMobiLog(@"InMobi SDK did fail to present a rewarded ad.");
   GADMAdapterInMobiDelegateManager *delegateManager =
       GADMAdapterInMobiDelegateManager.sharedInstance;
@@ -199,7 +199,7 @@
   [_adEventDelegate didDismissFullScreenView];
 }
 
-- (void)interstitial:(nonnull IMInterstitial *)interstitial didInteractWithParams:(NSDictionary<NSString *,id> *)params {
+- (void)interstitial:(nonnull IMInterstitial *)interstitial didInteractWithParams:(nullable NSDictionary<NSString *,id> *)params {
   GADMAdapterInMobiLog(@"InMobi SDK recorded a click on rewarded ad.");
   [_adEventDelegate reportClick];
 }
