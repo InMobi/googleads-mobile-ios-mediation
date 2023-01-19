@@ -150,7 +150,7 @@ static CGSize GADMAdapterInMobiSupportedAdSizeFromGADAdSize(GADAdSize gadAdSize)
   _bannerAdLoadCompletionHandler(nil, error);
 }
 
-- (void)banner:(nonnull IMBanner *)banner didInteractWithParams:(NSDictionary<NSString *,id> *)params {
+- (void)banner:(nonnull IMBanner *)banner didInteractWithParams:(nullable NSDictionary<NSString *,id> *)params {
   GADMAdapterInMobiLog(@"InMobi SDK recorded a click on a banner ad.");
   [_bannerAdEventDelegate reportClick];
 }

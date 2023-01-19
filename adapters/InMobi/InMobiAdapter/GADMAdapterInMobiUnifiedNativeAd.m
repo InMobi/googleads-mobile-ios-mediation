@@ -180,7 +180,7 @@ __attribute__((constructor)) static void initialize_imageCache() {
                 }];
 }
 
-- (void)native:(nonnull IMNative *)native didFailToLoadWithError:(IMRequestStatus *)error {
+- (void)native:(nonnull IMNative *)native didFailToLoadWithError:(nonnull IMRequestStatus *)error {
   GADMAdapterInMobiLog(@"InMobi SDK failed to load native ad");
   _nativeRenderCompletionHandler(nil, error);
 }
@@ -215,7 +215,7 @@ __attribute__((constructor)) static void initialize_imageCache() {
   [_nativeAdEventDelegate reportImpression];
 }
 
-- (void)native:(nonnull IMNative *)native didInteractWithParams:(NSDictionary<NSString *,id> *)params {
+- (void)native:(nonnull IMNative *)native didInteractWithParams:(nullable NSDictionary<NSString *,id> *)params {
   GADMAdapterInMobiLog(@"InMobi SDK recorded a click on a native ad.");
   [_nativeAdEventDelegate reportClick];
 }
