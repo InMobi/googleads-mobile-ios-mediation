@@ -7,7 +7,7 @@
 #import <Foundation/Foundation.h>
 #import <GoogleMobileAds/GADExtras.h>
 #import <GoogleMobileAds/GADRequest.h>
-#import <InMobiSDK/IMSdk.h>
+@import InMobiSDK;
 
 @interface GADInMobiExtras : NSObject <GADAdNetworkExtras>
 

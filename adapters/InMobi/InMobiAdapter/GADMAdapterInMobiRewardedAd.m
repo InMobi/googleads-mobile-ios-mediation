@@ -155,6 +155,7 @@
 }
 
 #pragma mark IMInterstitialDelegate methods
+
 - (void)interstitialDidFinishLoading:(nonnull IMInterstitial *)interstitial {
   GADMAdapterInMobiLog(@"InMobi SDK loaded a rewarded ad successfully.");
   _adEventDelegate = _renderCompletionHandler(self, nil);
