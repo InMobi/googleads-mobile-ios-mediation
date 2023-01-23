@@ -76,17 +76,6 @@ Set InMobi SDK logLevel.
  */
 - (void)setLocation:(nonnull CLLocation *)location;
 
-#pragma mark Setting User IDs
-/**
- * User ids such as facebook, twitter, etc may be provided to deliver more
- * relevant ids.
- */
-@property(nonatomic, copy, nullable) NSString *loginId;
-/**
- * Useful for maintaining different sessions with same login id.
- */
-@property(nonatomic, copy, nullable) NSString *sessionId;
-
 @property(nonatomic, copy, nullable, readonly) NSString *city;
 @property(nonatomic, copy, nullable, readonly) NSString *state;
 @property(nonatomic, copy, nullable, readonly) NSString *country;
