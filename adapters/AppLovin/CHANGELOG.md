@@ -1,5 +1,37 @@
 ## AppLovin iOS Mediation Adapter Changelog
 
+#### [Version 11.8.2.0](https://dl.google.com/googleadmobadssdk/mediation/ios/applovin/AppLovinAdapter-11.8.2.0.zip)
+- Verified compatibility with AppLovin SDK 11.8.2.
+- Added watermark support for bidding ads.
+- Added support for MREC size banner ads.
+
+Built and tested with:
+- Google Mobile Ads SDK version 10.2.0.
+- AppLovin SDK version 11.8.2.
+
+#### [Version 11.8.0.0](https://dl.google.com/googleadmobadssdk/mediation/ios/applovin/AppLovinAdapter-11.8.0.0.zip)
+- Verified compatibility with AppLovin SDK 11.8.0.
+
+Built and tested with:
+- Google Mobile Ads SDK version 10.1.0.
+- AppLovin SDK version 11.8.0.
+
+#### [Version 11.7.1.0](https://dl.google.com/googleadmobadssdk/mediation/ios/applovin/AppLovinAdapter-11.7.1.0.zip)
+- Verified compatibility with AppLovin SDK 11.7.1.
+- Fixed an issue that bidding rewarded ads fail to load if Zone ID is missing.
+
+Built and tested with:
+- Google Mobile Ads SDK version 10.0.0.
+- AppLovin SDK version 11.7.1.
+
+#### [Version 11.7.0.0](https://dl.google.com/googleadmobadssdk/mediation/ios/applovin/AppLovinAdapter-11.7.0.0.zip)
+- Verified compatibility with AppLovin SDK 11.7.0.
+- Now requires Google Mobile Ads SDK version 10.0.0 or higher.
+
+Built and tested with:
+- Google Mobile Ads SDK version 10.0.0.
+- AppLovin SDK version 11.7.0.
+
 #### [Version 11.6.1.0](https://dl.google.com/googleadmobadssdk/mediation/ios/applovin/AppLovinAdapter-11.6.1.0.zip)
 - Verified compatibility with AppLovin SDK 11.6.1.
 
