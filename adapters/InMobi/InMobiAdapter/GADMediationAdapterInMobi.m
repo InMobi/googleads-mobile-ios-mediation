@@ -23,6 +23,7 @@
 #import "GADMAdapterInMobiUnifiedNativeAd.h"
 #import "GADMAdapterInMobiUtils.h"
 #import "GADMInMobiConsent.h"
+#import "GADMAdapterInMobiInterstitialRewardedAd.h"
 
 @implementation GADMediationAdapterInMobi {
   /// InMobi rewarded ad wrapper.
@@ -33,6 +34,9 @@
 
   /// InMobi interstitial ad wrapper.
   GADMAdapterInMobiInterstitialAd *_interstitialAd;
+    
+  /// InMobi interstitial rewarded ad wrapper.
+  GADMAdapterInMobiInterstitialRewardedAd *_interstitialRewardedAd;
 
   /// InMobi native ad wrapper.
   GADMAdapterInMobiUnifiedNativeAd *_nativeAd;
@@ -171,6 +175,15 @@
 
   [_interstitialAd loadInterstitialAdForAdConfiguration:adConfiguration
                                       completionHandler:completionHandler];
+}
+
+- (void)loadRewardedInterstitialAdForAdConfiguration:(GADMediationRewardedAdConfiguration *)adConfiguration completionHandler:(GADMediationRewardedLoadCompletionHandler)completionHandler {
+        
+    if (!_interstitialRewardedAd) {
+        _interstitialRewardedAd = [[GADMAdapterInMobiInterstitialRewardedAd alloc] init];
+    }
+    [_interstitialRewardedAd loadInterstitialAdForAdConfiguration:adConfiguration
+                                        completionHandler:completionHandler];
 }
 
 - (void)loadNativeAdForAdConfiguration:(nonnull GADMediationNativeAdConfiguration *)adConfiguration
